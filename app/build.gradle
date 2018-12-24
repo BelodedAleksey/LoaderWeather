@@ -1,0 +1,53 @@
+apply plugin: 'com.android.application'
+//apply plugin: 'me.tatarka.retrolambda'
+//apply plugin: 'android-apt'
+
+android {
+    compileSdkVersion 24
+    buildToolsVersion '28.0.3'
+
+    defaultConfig {
+        applicationId "ru.gdgkazan.simpleweather"
+        minSdkVersion 17
+        targetSdkVersion 24
+        versionCode 1
+        versionName "1.0"
+
+        buildConfigField "String", "API_ENDPOINT", '"http://api.openweathermap.org/"'
+        buildConfigField "String", "API_KEY", '"bc0ffae33833bd4d0214451ff2c0d4be"'
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+apply from: '../versions.gradle'
+
+dependencies {
+    implementation "com.android.support:support-v4:$supportVersion"
+    implementation "com.android.support:support-v13:$supportVersion"
+    implementation "com.android.support:appcompat-v7:$supportVersion"
+    implementation "com.android.support:design:$supportVersion"
+    implementation "com.android.support:cardview-v7:$supportVersion"
+
+    implementation "com.squareup.okhttp3:okhttp:$okhttpVersion"
+    implementation "com.squareup.okhttp3:logging-interceptor:$okhttpVersion"
+    implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
+
+    implementation "io.reactivex:rxandroid:$rxandroidVersion"
+    implementation "io.reactivex:rxjava:$rxjavaVersion"
+
+    implementation "com.jakewharton:butterknife:$butterKnifeVersion"
+    annotationProcessor "com.jakewharton:butterknife-compiler:$butterKnifeVersion"
+
+    implementation "com.orhanobut:hawk:$hawkVersion"
+}
